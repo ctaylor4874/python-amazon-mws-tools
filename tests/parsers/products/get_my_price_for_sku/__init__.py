@@ -1,1 +1,1 @@
-from test_all import suite
+from .test_all import suite

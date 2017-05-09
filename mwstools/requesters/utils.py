@@ -1,6 +1,6 @@
 import os
 
-from mws.mws import DictWrapper
+from mws import DictWrapper
 
 requesters_dir = os.path.dirname(os.path.abspath(__file__))
 responses_dir = os.path.join(requesters_dir, 'responses')

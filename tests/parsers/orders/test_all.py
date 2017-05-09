@@ -1,9 +1,9 @@
 from unittest import TestSuite, main
-from test_Order import suite as suite_order
-from test_OrderItem import suite as suite_order_item
-from test_ListOrderItemsResponse import suite as suite_list_order_items_response
-from test_ListOrdersResult import suite as suite_list_orders_result
-from test_ListOrdersResponse import suite as suite_list_orders_response
+from .test_Order import suite as suite_order
+from .test_OrderItem import suite as suite_order_item
+from .test_ListOrderItemsResponse import suite as suite_list_order_items_response
+from .test_ListOrdersResult import suite as suite_list_orders_result
+from .test_ListOrdersResponse import suite as suite_list_orders_response
 
 
 def suite():

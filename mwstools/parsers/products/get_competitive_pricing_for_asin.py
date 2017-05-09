@@ -154,7 +154,7 @@ class Product(BaseElementWrapper):
         return [OfferListingCount(x) for x in self.product.xpath('./a:CompetitivePricing/a:NumberOfOfferListings//a:OfferListingCount')]
 
     def number_of_new_offer_listings(self):
-        l = filter(lambda x: x.condition.lower() == 'new', self.number_of_offer_listings())
+        l = list(filter(lambda x: x.condition.lower() == 'new', self.number_of_offer_listings()))
         if not l:
             return
         return l[0].count
@@ -163,7 +163,7 @@ class Product(BaseElementWrapper):
         return [SalesRank(x) for x in self.product.xpath('./a:SalesRankings//a:SalesRank')]
 
     def _website_sales_rank_element(self):
-        l = filter(lambda x: 'display_on_website' in x.product_category_id, self.sales_rankings())
+        l = list(filter(lambda x: 'display_on_website' in x.product_category_id, self.sales_rankings()))
         if not l:
             return None, None
         return l[0].product_category_id, l[0].rank
@@ -178,7 +178,7 @@ class Product(BaseElementWrapper):
         return self.status == 'Success'
 
     def new_landed_price(self):
-        l = filter(lambda x: x.condition == 'New' and x.sub_condition == 'New', self.competitive_prices())
+        l = list(filter(lambda x: x.condition == 'New' and x.sub_condition == 'New', self.competitive_prices()))
         if l:
             new_price = l[0].landed_price
         else:

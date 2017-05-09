@@ -1,9 +1,9 @@
 from unittest import TestSuite, main
 
-from test_offer import suite as suite_offer
-from test_getMyPriceForSkuResult import suite as suite_get_my_price_for_sku_result
-from test_product import suite as suite_product
-from test_getMyPriceForSkuResponse import suite as suite_get_my_price_for_sku_response
+from .test_offer import suite as suite_offer
+from .test_getMyPriceForSkuResult import suite as suite_get_my_price_for_sku_result
+from .test_product import suite as suite_product
+from .test_getMyPriceForSkuResponse import suite as suite_get_my_price_for_sku_response
 
 def suite():
     s = TestSuite()

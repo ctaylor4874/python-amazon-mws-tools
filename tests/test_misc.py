@@ -57,12 +57,11 @@ class WrapperFunctionTests(unittest.TestCase):
 
         self.assertIsNone(parse_date(bogus)())
 
-    @unittest.expectedFailure
     def test_parse_invalid_date(self):
         def bogus():
             return 'this-date-is-invalid'
 
-        self.assertIsNone(parse_date(bogus)())
+        self.assertRaises(ValueError, lambda: parse_date(bogus)())
 
     def test_parse_valid_date(self):
         def bogus():

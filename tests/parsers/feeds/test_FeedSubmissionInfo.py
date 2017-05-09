@@ -33,7 +33,7 @@ class TestFeedSubmissionInfoNoCompletedStarted(TestCase):
         self.assertIsNone(self.parser.started_processing_date)
 
     def test_submitted_date(self):
-        self.assertEqual(self.parser.submitted_date, datetime(2017, 02, 15, 1))
+        self.assertEqual(self.parser.submitted_date, datetime(2017, 2, 15, 1))
 
     def test_completed_processing_date(self):
         self.assertIsNone(self.parser.completed_processing_date)

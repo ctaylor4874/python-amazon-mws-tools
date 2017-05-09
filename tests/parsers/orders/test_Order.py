@@ -78,10 +78,10 @@ class TestOrderSuccess(TestCase):
     def test_sales_channel(self):
         self.assertEqual(self.parser.sales_channel, 'Amazon.com')
 
-    # ToDo: find order with this attribute
-    @expectedFailure
-    def test_is_business_order(self):
-        self.fail()
+    # # ToDo: find order with this attribute
+    # @expectedFailure
+    # def test_is_business_order(self):
+    #     self.fail()
 
     def test_number_of_items_unshipped(self):
         self.assertEqual(self.parser.number_of_items_unshipped, '0')
@@ -95,10 +95,10 @@ class TestOrderSuccess(TestCase):
     def test_order_total(self):
         self.assertEqual(self.parser.order_total, '6.24')
 
-    #ToDo: find order with this attribute
-    @expectedFailure
-    def test_is_premium_order(self):
-        self.fail()
+    # #ToDo: find order with this attribute
+    # @expectedFailure
+    # def test_is_premium_order(self):
+    #     self.fail()
 
     def test_earliest_ship_date(self):
         self.assertEqual(self.parser.earliest_ship_date, datetime.datetime(2016, 12, 21, 12, 14, 23))
@@ -113,9 +113,9 @@ class TestOrderSuccess(TestCase):
         self.assertEqual(self.parser.payment_method, 'Other')
 
     # ToDo: find order with this attribute
-    @expectedFailure
-    def test_is_prime(self):
-        self.fail()
+    # @expectedFailure
+    # def test_is_prime(self):
+    #     self.fail()
 
     def test_shipment_service_level_category(self):
         self.assertEqual(self.parser.shipment_service_level_category, 'SecondDay')
@@ -133,9 +133,9 @@ class TestOrderSuccess(TestCase):
         self.assertEqual(self.parser.city, 'CITY')
 
     # ToDo: find order with this attribute
-    @expectedFailure
-    def test_phone(self):
-        self.fail()
+    # @expectedFailure
+    # def test_phone(self):
+    #     self.fail()
 
     def test_country_code(self):
         self.assertEqual(self.parser.country_code, 'US')

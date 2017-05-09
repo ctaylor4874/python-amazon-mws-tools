@@ -1,5 +1,5 @@
 from unittest import TestSuite, main
-from test_ReportRequester import suite as suite_report_requester
+from .test_ReportRequester import suite as suite_report_requester
 
 
 def suite():

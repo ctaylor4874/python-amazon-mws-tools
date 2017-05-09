@@ -1,6 +1,6 @@
 from unittest import TestSuite, main
 
-from test_GetServiceStatusResponse import suite as suite_test_get_service_status_response
+from .test_GetServiceStatusResponse import suite as suite_test_get_service_status_response
 
 
 def suite():

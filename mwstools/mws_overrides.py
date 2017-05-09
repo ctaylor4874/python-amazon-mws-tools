@@ -2,7 +2,7 @@ import urllib
 
 from requests import Session, Response
 from requests.adapters import HTTPAdapter, CaseInsensitiveDict, get_encoding_from_headers, extract_cookies_to_jar
-from mws.mws import MWS, remove_empty, DictWrapper, DataWrapper, calc_md5
+from mws import MWS, remove_empty, DictWrapper, DataWrapper, calc_md5
 
 from mwstools.parsers.errors import ErrorResponse
 
@@ -436,7 +436,7 @@ class OverrideProducts(_MWS):
         >>> asins = ['asin-1', 'asin-2']  # up to 10 asins.
         >>> estimate_requests = [api.gen_fees_estimate_request('marketplace_id', x) for x in asins]
         >>> response = api.get_my_fees_estimate(estimate_requests)
-        >>> print response.original
+        >>> print(response.original)
 
         :param estimate_requests: The list of estimate request dicts.
         :return:

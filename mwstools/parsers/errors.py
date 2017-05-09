@@ -26,14 +26,13 @@ def strip_namespace(element):
     :return:
     """
     if element is not None:
-        xml_string = etree.tostring(element)
+        xml_string = etree.tostring(element, encoding="unicode")
         xml_string = _strip_namespace(xml_string)
         element = etree.fromstring(xml_string)
     return element
 
 
 class MwsResponseError(Exception):
-
     def __init__(self, type, code, message):
         self.type = type
         self.code = code
@@ -97,11 +96,10 @@ def get_proper_error(error):
     E = _errors.get(error.code)
     if not E:
         return MwsResponseError(error.type, error.code, error.message)
-    return E(error.type, error.code, error.message)
+    return E(error.type, error.code, str(error.message))
 
 
 class ErrorElement(BaseElementWrapper):
-
     """
     Root element of <Error />
     """
@@ -135,6 +133,9 @@ class ErrorElement(BaseElementWrapper):
         return self.xpath('./Message/text()')
 
     def __nonzero__(self):
+        return self.__bool__()
+
+    def __bool__(self):
         return bool(self.xpath('/Error'))
 
     def __repr__(self):
@@ -147,7 +148,6 @@ class ErrorElement(BaseElementWrapper):
 
 
 class ErrorResponse(BaseElementWrapper):
-
     attrs = [
         'request_id',
         'error'
@@ -183,4 +183,3 @@ class ErrorResponse(BaseElementWrapper):
             self.error.code,
             self.error.message
         )
-

@@ -135,3 +135,12 @@ ENV/
 .ropeproject
 
 .idea
+/scratchpad.py
+/py2venv/
+Would skip repository py2venv/src/python-amazon-mws
+py2venv/src/pip-delete-this-directory.txt
+py2venv/pip-selfcheck.json
+py2venv/lib
+py2venv/include
+py2venv/local
+py2venv/bin

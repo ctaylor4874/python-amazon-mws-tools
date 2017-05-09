@@ -2,7 +2,7 @@ from unittest import TestCase, TestSuite, makeSuite, main
 
 import requests
 
-from mwstools.parsers.errors import ErrorElement, InvalidParameterValue
+from mwstools.parsers.errors import ErrorElement, InvalidParameterValue, MwsResponseError
 from mwstools.parsers.orders import ListOrdersResponse
 from mwstools.requesters.orders import ListOrdersRequester
 from mwstools.mws_overrides import MWSResponse

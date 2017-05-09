@@ -1,6 +1,6 @@
 from unittest import TestSuite, main
-from test_FeedSubmissionInfo import suite as suite_test_feed_submission_info
-from test_SubmitFeedResponse import suite as suite_test_submit_feed_response
+from .test_FeedSubmissionInfo import suite as suite_test_feed_submission_info
+from .test_SubmitFeedResponse import suite as suite_test_submit_feed_response
 
 
 def suite():

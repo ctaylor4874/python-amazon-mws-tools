@@ -31,7 +31,7 @@ class TestOfferChangeTrigger(TestCase):
         self.assertEqual(self.parser.item_condition, 'new')
 
     def test_time_of_offer_change(self):
-        self.assertEqual(self.parser.time_of_offer_change, datetime.datetime(2017, 1, 25, 6, 0, 0))
+        self.assertEqual(self.parser.time_of_offer_change, datetime.datetime(2017, 1, 25, 7, 0, 0))
 
 __all__ = [
     TestOfferChangeTrigger

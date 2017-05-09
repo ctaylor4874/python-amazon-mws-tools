@@ -18,6 +18,8 @@ class ProductError(MwsResponseError):
 
 
 class FeesError(ProductError):
+    def __bool__(self):
+        return bool(self.message)
 
     def __nonzero__(self):
-        return bool(self.message)
+        return self.__bool__()
