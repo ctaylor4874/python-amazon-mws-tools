@@ -1,10 +1,5 @@
-try:
-    from urllib.parse import urlparse, urlunsplit, urlencode, quote
-except ImportError:
-    from urllib import urlparse, urlunsplit, urlencode, quote
-import hmac
-import hashlib
-import base64
+import urllib
+
 from requests import Session, Response
 from requests.adapters import HTTPAdapter, CaseInsensitiveDict, get_encoding_from_headers, extract_cookies_to_jar
 from mws import MWS, remove_empty, DictWrapper, DataWrapper, calc_md5
@@ -18,6 +13,7 @@ except ImportError:
 
 
 class MWSResponse(Response):
+
     def raise_for_api_error(self):
         """
         Parse the response content to get an error if exists and raise it.
@@ -105,22 +101,13 @@ class _MWS(MWS):
         }
         params.update(extra_data)
         request_description = '&'.join(
-            ['%s=%s' % (k, quote(params[k], encoding='utf-8', safe='-_.~')) for k in sorted(params)])
-        signature = self.calc_signature('GET', request_description)
-        self.logger.debug(signature)
-        url = '%s%s?%s&Signature=%s' % (self.domain, self.uri, request_description, quote(signature))
+            ['%s=%s' % (k, urllib.quote(params[k], safe='-_.~').encode('utf-8')) for k in sorted(params)])
+        signature = self.calc_signature(method, request_description)
+        url = '%s%s?%s&Signature=%s' % (self.domain, self.uri, request_description, urllib.quote(signature))
         headers = {'User-Agent': 'python-amazon-mws/0.0.1 (Language=Python)'}
         headers.update(kwargs.get('extra_headers', {}))
-        return self.session.request(method, url, data=kwargs.get('body', ''), headers=headers)
 
-    def calc_signature(self, method, request_description):
-        sig_data = method + '\n' + self.domain.replace('https://',
-                                                       '').lower() + '\n' + self.uri + '\n' + request_description
-        self.logger.debug('string to sign: {}'.format('\n   '.join(sig_data.split('\n'))))
-        x = base64.b64encode(
-            hmac.new(bytes(self.secret_key, encoding='utf-8'), msg=sig_data.encode(encoding='utf-8'),
-                     digestmod=hashlib.sha256).digest())
-        return x
+        return self.session.request(method, url, data=kwargs.get('body', ''), headers=headers)
 
     def make_request(self, extra_data, method="GET", **kwargs):
         """
@@ -479,7 +466,7 @@ class OverrideReports(_MWS):
         data.update(self.enumerate_param('ReportTypeList.Type.', report_types))
         return self.request(data)
 
-    def get_report_list(self, requestids=(), max_count=None, types=None, acknowledged=None,
+    def get_report_list(self, requestids=(), max_count=None, types=(), acknowledged=None,
                         fromdate=None, todate=None):
         data = dict(Action='GetReportList',
                     Acknowledged=acknowledged,
